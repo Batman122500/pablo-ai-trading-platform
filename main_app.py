@@ -2,27 +2,25 @@ import sys
 import os
 import streamlit as st
 
-# Add the project root to Python path
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(os.path.dirname(current_dir))
-sys.path.insert(0, project_root)
+# Add the current directory to Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-# Now use absolute imports
-from pablo.ui_base.config.session_state import initialize_session_state, cleanup_on_navigation
-from pablo.ui_base.config.performance import performance_monitor
-from pablo.ui_base.config.theme import apply_custom_theme
+# Now use relative imports
+from config.session_state import initialize_session_state, cleanup_on_navigation
+from config.performance import performance_monitor
+from config.theme import apply_custom_theme
 
-from pablo.ui_base.components.sidebar import render_sidebar
-from pablo.ui_base.components.header import show_connection_status
-from pablo.ui_base.components.task_monitor import show_task_monitor
+from components.sidebar import render_sidebar
+from components.header import show_connection_status
+from components.task_monitor import show_task_monitor
 
-from pablo.ui_base.pages.dashboard import show_dashboard
-from pablo.ui_base.pages.data_management.historical_data import show_historical_data_tab
-from pablo.ui_base.pages.data_management.pair_management import show_trading_pair_management_tab
-from pablo.ui_base.pages.data_management.preprocessing import show_data_preprocessing_tab
-from pablo.ui_base.pages.data_management.preprocessed_data import show_preprocessed_data_management
-from pablo.ui_base.pages.model_deployment import show_model_deployment
-from pablo.ui_base.pages.model_engineering import show_model_engineering
+from pages.dashboard import show_dashboard
+from pages.data_management.historical_data import show_historical_data_tab
+from pages.data_management.pair_management import show_trading_pair_management_tab
+from pages.data_management.preprocessing import show_data_preprocessing_tab
+from pages.data_management.preprocessed_data import show_preprocessed_data_management
+from pages.model_deployment import show_model_deployment
+from pages.model_engineering import show_model_engineering
 
 def safe_page_render(page_func, page_name):
     """Safely render pages with error handling."""
